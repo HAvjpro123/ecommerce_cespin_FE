@@ -126,10 +126,11 @@ export const NavigationData = {
   
     var scrollPosition = window.scrollY;
   
-    if (scrollPosition > 200) { // Khoảng cách từ đỉnh trang để thẻ div biến mất
+    if (scrollPosition >= 0) { // Khoảng cách từ đỉnh trang để thẻ div biến mất
       myDiv.classList.add('fixed');
      
     } else {
       myDiv.classList.remove('fixed');
     }
   });
+
