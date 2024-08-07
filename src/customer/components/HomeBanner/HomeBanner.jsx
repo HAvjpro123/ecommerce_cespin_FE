@@ -1,14 +1,10 @@
 import React from 'react'
-import '../../../CSS/Carousel.css'
+
+import banner from '../../../Asset/CarouselImage/cespincarousel1.png'
 const HomeBanner = ({data}) => {
   return (
     <div className=''>
-        <header className="masthead cursor-pointer">
-        <div className="items-center">
-          
-        </div>
-      </header>
-      <p>{data}</p>
+      <img src={banner} className='cursor-pointer' alt="" />
     </div>
   )
 }

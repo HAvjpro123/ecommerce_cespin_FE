@@ -1,3 +1,6 @@
+import a1 from '../../../Asset/ProductImage/a1-binh-nau.png'
+import b1 from '../../../Asset/ProductImage/b1-armchair-nautrang-1cho.png'
+
 export const NavigationData = {
     categories: [
       {
@@ -7,13 +10,13 @@ export const NavigationData = {
           {
             name: 'New Arrivals',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
+            imageSrc: a1,
             imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
           },
           {
             name: 'Basic Tees',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
+            imageSrc: b1,
             imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
           },
         ],
@@ -22,38 +25,38 @@ export const NavigationData = {
             id: 'clothing',
             name: 'Clothing',
             items: [
-              { name: 'Tops', href: '#' },
-              { name: 'Dresses', href: '#' },
-              { name: 'Pants', href: '#' },
-              { name: 'Denim', href: '#' },
-              { name: 'Sweaters', href: '#' },
-              { name: 'T-Shirts', href: '#' },
-              { name: 'Jackets', href: '#' },
-              { name: 'Activewear', href: '#' },
-              { name: 'Browse All', href: '#' },
+              { id:'tops', name: 'Tops', href: '#' },
+              { id:'dresses', name: 'Dresses', href: '#' },
+              { id:'Pants', name: 'Pants', href: '#' },
+              { id:'Denim', name: 'Denim', href: '#' },
+              { id:'Sweaters', name: 'Sweaters', href: '#' },
+              { id:'T-Shirts', name: 'T-Shirts', href: '#' },
+              { id:'Jackets', name: 'Jackets', href: '#' },
+              { id:'Activewear', name: 'Activewear', href: '#' },
+              { id:'Browse All', name: 'Browse All', href: '#' },
             ],
           },
           {
             id: 'accessories',
             name: 'Accessories',
             items: [
-              { name: 'Watches', href: '#' },
-              { name: 'Wallets', href: '#' },
-              { name: 'Bags', href: '#' },
-              { name: 'Sunglasses', href: '#' },
-              { name: 'Hats', href: '#' },
-              { name: 'Belts', href: '#' },
+              { id:'Watches', name: 'Watches', href: '#' },
+              { id:'Wallets', name: 'Wallets', href: '#' },
+              { id:'Bags', name: 'Bags', href: '#' },
+              { id:'Sunglasses', name: 'Sunglasses', href: '#' },
+              { id:'Hats', name: 'Hats', href: '#' },
+              { id:'Belts', name: 'Belts', href: '#' },
             ],
           },
           {
             id: 'brands',
             name: 'Brands',
             items: [
-              { name: 'Full Nelson', href: '#' },
-              { name: 'My Way', href: '#' },
-              { name: 'Re-Arranged', href: '#' },
-              { name: 'Counterfeit', href: '#' },
-              { name: 'Significant Other', href: '#' },
+              { id:'Full Nelson', name: 'Full Nelson', href: '#' },
+              { id:'My Way', name: 'My Way', href: '#' },
+              { id:'Re-Arranged', name: 'Re-Arranged', href: '#' },
+              { id:'Counterfeit', name: 'Counterfeit', href: '#' },
+              { id:'Significant Other', name: 'Significant Other', href: '#' },
             ],
           },
         ],
@@ -65,13 +68,13 @@ export const NavigationData = {
           {
             name: 'New Arrivals',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
+            imageSrc: a1,
             imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
           },
           {
             name: 'Artwork Tees',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
+            imageSrc: b1,
             imageAlt:
               'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
           },

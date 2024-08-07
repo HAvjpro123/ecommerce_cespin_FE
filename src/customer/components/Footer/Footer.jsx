@@ -26,7 +26,6 @@ const Footer = () => {
                             <button className='text-gray-300 hover:text-white my-auto mr-1'><InstagramIcon className='mb-1' /><span>Instagram</span></button>
                             <button className='text-gray-300 hover:text-white my-auto mr-1'><YouTubeIcon className='mb-1' /><span>Youtube</span></button>
                             <button className='text-gray-300 hover:text-white my-auto mr-1'><FacebookIcon className='mb-1'/><span>FaceBook</span></button>
-
                         </div>
 
 

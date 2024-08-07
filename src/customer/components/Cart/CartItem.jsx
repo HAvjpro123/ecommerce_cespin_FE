@@ -9,20 +9,20 @@ const CartItem = () => {
     <div className='px-3 pt-3 pb-2 border  border-gray-300 rounded-none m-4'>
       <div className='flex items-center mb-4'>
         {/*Product Img Info*/}
-        <div className='min-w-[6rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]'>
+        <div className='min-w-[6rem] h-[5rem] lg:w-[16rem] lg:h-[9rem]'>
           <img className="w-full h-full object-cover object-top" src={a1} alt="" />
         </div>
 
         {/* Product Item Info */}
         <div className='ml-5 space-y=1 text-sm lg:text-md '>
-          <p className='font-semibold text-lg text-gray-700 '>Armchair xoay Jadora vải VACT3399 tặng kèm gối màu ngẫu nhiên </p>
+          <p className='font-semibold mb-4 text-lg text-gray-700 overflow-hidden leading-7 line-clamp-3 text-ellipsis'>Armchair xoay Jadora vải VACT3399 tặng kèm gối màu ngẫu nhiên da sa da a dada asas a asd as a asd </p>
           <p className='text-gray-600 text-sm'>Size: L, Green</p>
           <p className='mt-2 text-gray-600 text-sm'>Seller: HAHAHA</p>
 
           <div className=' flex space-x-3 items-center text-gray-900 lg:mt-10 mt-2'>
-            <p className='font-semibold '>95$</p>
+            <p className='font-semibold '>1000$</p>
             <p className='text-gray-500 line-through'>100$</p>
-            <p className='text-green-600 font-semibold'>5% off</p>
+            <p className='text-green-600 font-semibold'>50% off</p>
           </div>
         </div>
 

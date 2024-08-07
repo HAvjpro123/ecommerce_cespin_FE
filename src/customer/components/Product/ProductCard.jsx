@@ -1,17 +1,22 @@
 import React from 'react'
 import a1 from '../../../Asset/ProductImage/a1-binh-nau.png'
+import { useNavigate } from 'react-router-dom'
 const ProductCard = ({product}) => {
+  const navigate = useNavigate();
   return (
-    <div className='productcart w-52 max-w-80 mx-1 '>
+    // Thẻ sản phẩm trong trang Product
+    <div onClick={() => navigate(`/product/${5}`)} className='productcart lg:w-52 w-44 max-w-80 mx-1 '>
       <div className='cursor-pointer flex flex-col bg-white rounded-none overflow-hidden h-auto px-2 border border-transparent hover:border-black' >
-        <div className='h-[12rem] w-[16rem] self-center'>
-          <img className=' w-full h-auto ' src={product.image} alt="" />
+        {/* Div hiển thị ảnh sản phẩm */}
+        <div className=' lg:h-auto lg:w-[12rem]  w-[8rem] h-auto self-center'>
+          <img className=' w-full h-auto mb-2 ' src={product.image} alt="" />
         </div>
 
-        <div className=' pb-4'>
-          <h3 className='text-lg font-medium text-gray-900'>{product.brand}</h3>
-          <p className=' text-sm text-gray-500'>{product.title}</p>
-          <div className='flex items-center space-x-2'>
+        {/* Div hiển thị thông tin sản phẩm */}
+        <div className=' pb-4 space-y-2'>
+          <h3 className='lg:text-lg text-md font-medium text-gray-900 max-w-[10rem] lg:max-w-[12rem] overflow-hidden line-clamp-2 text-ellipsis'>{product.brand}</h3>
+          <p className=' lg:text-sm text-xs text-gray-500 max-w-[10rem] lg:max-w-[12rem] overflow-hidden leading-5 line-clamp-2 text-ellipsis'>{product.title}</p>
+          <div className='flex items-center space-x-2 text-xs lg:text-sm'>
             <p className=''>{product.discountPrice}$</p>
             <p className='line-through opacity-50'>{product.price}$</p>
             <p className='text-green-600 font-bold'>{product.discountPresent}% off</p>

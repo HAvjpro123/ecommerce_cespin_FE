@@ -84,7 +84,7 @@ export default function Product() {
 
     const query = searchParams.toString();
     navigate({ search: `?${query}` })
-  } 
+  }
   return (
     <div className="bg-white">
       <div>
@@ -161,7 +161,7 @@ export default function Product() {
         </Dialog>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-10">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
 
             <div className="flex items-center">
@@ -221,11 +221,11 @@ export default function Product() {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-8  lg:grid-cols-4">
               {/* Filters Laptop Screen*/}
 
-              <div>
-                <div className='py-10 flex justify-between items-center'>
+              <div className=''>
+                <div className='py-10 hidden lg:flex justify-between items-center'>
                   <h1 className='text-lg opacity-50 font-bold'> Filter</h1>
                   <FilterListIcon className='' />
                 </div>
@@ -297,7 +297,7 @@ export default function Product() {
                                   {section.options.map((option, optionIdx) => (
 
                                     <>
-                                      <FormControlLabel onChange={(e) => handleRadioFilterChange(e, section.id) } value={option.value} control={<Radio />} label={option.label} />
+                                      <FormControlLabel onChange={(e) => handleRadioFilterChange(e, section.id)} value={option.value} control={<Radio />} label={option.label} />
                                     </>
 
                                   ))}
@@ -312,10 +312,9 @@ export default function Product() {
                 </form>
               </div>
 
-
-              {/* Product grid */}
-              <div className="lg:col-span-3 w-full bg-">
-                <div className='flex flex-wrap justify-center bg-white py-4'>
+              {/*Hiển thị sản phẩm */}
+              <div className="lg:col-span-3 w-full ">
+                <div className='flex flex-wrap justify-center lg:justify-between bg-white py-4'>
                   {interior.map((item) => <ProductCard product={item} />)}
                 </div>
               </div>

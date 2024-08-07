@@ -9,10 +9,10 @@ import { interior } from '../../../Data/Interior';
 
 const HomeSectionCarousel2 = () => {
 
-    const[activeIndex, setActiveIndex]=useState(0);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const responsive = {
-        0: { items: 1 },
+        0: { items: 2 },
         558: { items: 2 },
         900: { items: 3 },
         1024: { items: 3 },
@@ -24,10 +24,11 @@ const HomeSectionCarousel2 = () => {
 
     const syncActiveIndex = ({ item }) => setActiveIndex(item);
 
-    
-    const items = interior.slice(0,10).map((item) => <HomeSectionCard  product={item} />);
+
+    const items = interior.slice(0, 10).map((item) => <HomeSectionCard product={item} />);
     return (
         <div className='px-6'>
+            {/* Div tiêu đề HomeSectionCarousel2 */}
             <div className='flex border-b border-stone-300'>
                 <div className='py-2 mx-3 border-b-2 border-green-700'>
                     <span className='px-1 text-xl'>ĐỒ TRANG TRÍ</span>
@@ -37,7 +38,9 @@ const HomeSectionCarousel2 = () => {
                 </div>
             </div>
 
+            {/* Div hiển thị carousel sản phẩm */}
             <div className='relative px-6 pt-4'>
+                {/* AliceCarousel hiển thị sản phẩm đang bày bán */}
                 <AliceCarousel
                     items={items}
                     disableButtonsControls
@@ -46,27 +49,28 @@ const HomeSectionCarousel2 = () => {
                     onSlideChanged={syncActiveIndex}
                     activeIndex={activeIndex}
                 />
-                { activeIndex !== items.length-4 && <ArrowForwardIosIcon onClick={slideNext} variant='contained' className='z-50 cursor-pointer hover:text-green-600 ' 
-                sx={{ 
-                    fontSize: 25, 
-                    position: 'absolute', 
-                    top: '8rem', 
-                    right: '0rem' }} 
-                    aria-label='next' 
-                />}
-                {activeIndex!==0 && <ArrowBackIosIcon onClick={slidePrev} variant='contained' className='z-50 cursor-pointer hover:text-green-600 ml-2' 
-                sx={{ 
-                    fontSize: 25,
-                    position: 'absolute', 
-                    top: '8rem', 
-                    left:'0rem' }} 
-                    aria-label='prev' 
-                />}
-                
 
-            </div>
-            <div>
+                {/* Button hiển thị danh sách sản phẩm bên trái */}
+                {activeIndex !== items.length - 4 && <ArrowForwardIosIcon onClick={slideNext} variant='contained' className='z-50 cursor-pointer hover:text-green-600 '
+                    sx={{
+                        fontSize: 25,
+                        position: 'absolute',
+                        top: '50%',
+                        right: '0rem'
+                    }}
+                    aria-label='next'
+                />}
 
+                {/* Button lùi lại danh sách sản phẩm  */}
+                {activeIndex !== 0 && <ArrowBackIosIcon onClick={slidePrev} variant='contained' className='z-50 cursor-pointer hover:text-green-600 ml-2'
+                    sx={{
+                        fontSize: 25,
+                        position: 'absolute',
+                        top: '50%',
+                        left: '0rem'
+                    }}
+                    aria-label='prev'
+                />}
             </div>
         </div>
 

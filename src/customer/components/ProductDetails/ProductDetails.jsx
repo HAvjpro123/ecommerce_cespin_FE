@@ -6,6 +6,8 @@ import { Rating, Grid, LinearProgress, Box } from '@mui/material'
 import ProductReviewCard from './ProductReviewCard'
 import { interior } from '../../../Data/Interior'
 import HomeSectionCard from '../HomeSectionCard/HomeSectionCard'
+import { useNavigate } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 
 const product = {
@@ -65,6 +67,8 @@ function classNames(...classes) {
 export default function ProductDetails() {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
     const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+    const navigate = useNavigate();
+
 
     return (
         <div className="bg-white lg:px-20 z-0">
@@ -204,14 +208,12 @@ export default function ProductDetails() {
 
                                 </div>
 
-                                <button
-                                    type="submit"
-                                    className="mt-10 flex w-full items-center justify-center  border border-transparent
-                                     bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:outline-none
-                                      focus:ring-2 focus:ring-green-500 focus:ring-offset-2 rounded-none"
+                                <Button className="mt-10 flex w-full items-center justify-center  border border-transparent
+                                                 bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700  rounded-none"
+                                    onClick={() => navigate("/cart")}
                                 >
                                     Add To Cart
-                                </button>
+                                </Button>
 
                             </form>
                         </div>
@@ -322,11 +324,11 @@ export default function ProductDetails() {
                 {/* simalar product */}
                 <section className='py-10 mx-6 ' >
                     <div className='flex border-b '>
-                        <div className='py-2 mx-3 border-b-2 border-green-600'>
+                        <div className='py-2 lg:mx-3 border-b-2 border-green-600'>
                             <span className='px-1 text-2xl'>SIMILAR PRODUCT</span>
                         </div>
                     </div>
-                    <div className='flex flex-wrap justify-center lg:justify-between mt-6'>
+                    <div className='flex flex-wrap justify-between lg:justify-between mt-6'>
                         {interior.map((item) => <HomeSectionCard product={item} />)}
                     </div>
                 </section>

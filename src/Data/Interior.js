@@ -10,8 +10,8 @@ import b8 from '../Asset/ProductImage/b8-sofa-nau-2cho.png'
 export const interior = [
     {
         "image": b1,
-        "brand": "LOLHAHA",
-        "title": "AIMCHAIR NÂU TRẮNG",
+        "brand": "LOLHAHA THE NEW FASH IN UR FUTURE & WE ARE NEED",
+        "title": "AIMCHAIR NÂU TRẮNG NHIỀU HỌA TIẾT TRANG TRÍ ĐẶC SẮC",
         "color": "White",
         "discountPrice": 20,
         "price": 600,
@@ -34,8 +34,8 @@ export const interior = [
 
     {
         "image": b2,
-        "brand": "LOLHAHA",
-        "title": "BÀN ĂN TRẮNG",
+        "brand": "LOLHAHA LUÔN CUNG CẤP NHỮNG KIỂU DÁNG MỚI LẠ VÀ HẤP DẪN",
+        "title": "BÀN ĂN TRẮNG VỚI NHIỀU KÍCH CỠ KHÁC NHAU CHO MỌI PHÒNG",
         "color": "White",
         "discountPrice": 20,
         "price": 600,

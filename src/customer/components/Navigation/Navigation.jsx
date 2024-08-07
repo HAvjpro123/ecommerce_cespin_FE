@@ -17,18 +17,31 @@ import {
   TabPanels,
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
-
-
+import { useNavigate } from 'react-router-dom'
+import Avatar from './Avatar'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
+  const [openAuthModel, setOpenAuthModal] = useState()
+  const navigate = useNavigate();
+
+  const handleOpen = () => {
+    setOpenAuthModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenAuthModal(false);
+  };
+
+  const handleCategoryClick = (category, section, item) => {
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+  };
 
   return (
-    <nav className="bg-white w-full z-30 mb-auto "  id='myDiv'>
+    <nav className="bg-white w-full z-30 mb-auto " id='myDiv'>
       {/* Mobile menu */}
       <Dialog className=" relative z-40 lg:hidden" open={open} onClose={setOpen}>
         <DialogBackdrop
@@ -102,10 +115,11 @@ export default function Navigation() {
                           className="mt-6 flex flex-col space-y-6"
                         >
                           {section.items.map((item) => (
-                            <li key={item.name} className="flow-root">
-                              <a href={item.href} className="-m-2 block p-2 text-gray-500">
+                            <li key={item.name} className="flex">
+                              <p onClick={() => handleCategoryClick(category, section, item)}
+                                className='cursor-pointer hover:text-gray-800'>
                                 {item.name}
-                              </a>
+                              </p>
                             </li>
                           ))}
                         </ul>
@@ -128,15 +142,21 @@ export default function Navigation() {
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               <div className="flow-root">
-                <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                  Sign in
-                </a>
+                <p href="#" className="-m-2 block p-2 font-medium hover:text-gray-600 text-gray-900">
+                  Hồ sơ người dùng
+                </p>
               </div>
               <div className="flow-root">
-                <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                  Create account
-                </a>
+                <p className="-m-2 block p-2 font-medium hover:text-gray-600 text-gray-900" onClick={() => navigate('/account/order')}>
+                  Đơn hàng
+                </p>
               </div>
+              <div className="flow-root">
+                <p href="#" className="-m-2 block p-2 font-medium hover:text-gray-600 text-gray-900">
+                  Đăng xuất
+                </p>
+              </div>
+
             </div>
 
             <div className="border-t border-gray-200 px-4 py-6">
@@ -173,13 +193,13 @@ export default function Navigation() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <a href="#" className='flex'>
-                  <span className="sr-only">asdadas</span>
+              <div className="ml-4 flex lg:ml-0" onClick={() => navigate('/')}>
+                <a href="" className='flex'>
+                  <span className="sr-only"></span>
                   <img
                     className="h-9 w-auto"
                     src={logo}
-                    alt=''   
+                    alt=''
                   />
                   <span className="my-auto font-bold text-green-700 text-lg">CESPIN</span>
                 </a>
@@ -206,7 +226,7 @@ export default function Navigation() {
                           </div>
 
                           <PopoverPanel
-                            transition 
+                            transition
                             className="absolute inset-x-0 top-full text-sm text-gray-500 transition data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in "
                           >
                             {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
@@ -225,7 +245,8 @@ export default function Navigation() {
                                             className="object-cover object-center"
                                           />
                                         </div>
-                                        <a href={item.href} className="mt-6 block font-medium text-gray-900">
+                                        <a href={item.href}
+                                          className="mt-6 block font-medium text-gray-900">
                                           <span className="absolute inset-0 z-40" aria-hidden="true" />
                                           {item.name}
                                         </a>
@@ -238,7 +259,8 @@ export default function Navigation() {
                                   <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                                     {category.sections.map((section) => (
                                       <div key={section.name}>
-                                        <p id={`${section.name}-heading`} className="font-medium text-gray-900">
+                                        <p id={`${section.name}-heading`}
+                                          className="font-medium text-gray-900">
                                           {section.name}
                                         </p>
                                         <ul
@@ -248,9 +270,10 @@ export default function Navigation() {
                                         >
                                           {section.items.map((item) => (
                                             <li key={item.name} className="flex">
-                                              <a href={item.href} className="hover:text-gray-800">
+                                              <p onClick={() => handleCategoryClick(category, section, item)}
+                                                className='cursor-pointer hover:text-gray-800'>
                                                 {item.name}
-                                              </a>
+                                              </p>
                                             </li>
                                           ))}
                                         </ul>
@@ -278,35 +301,21 @@ export default function Navigation() {
                 </div>
               </PopoverGroup>
 
-              <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Sign in
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Create account
-                  </a>
-                </div>
 
-                <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
 
+              {/* nav bên trái*/}
+              <div className="ml-auto flex items-center lg:space-x-6">
                 {/* Search */}
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
                   </a>
+                </div>
+
+                {/* Avatar */}
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end ">
+                  <Avatar />
                 </div>
 
                 {/* Cart */}

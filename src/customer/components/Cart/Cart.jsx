@@ -1,12 +1,17 @@
 import React from 'react'
 import CartItem from './CartItem'
 import { Button, Divider } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
+  const navigate = useNavigate();
+  const handleCheckout = () => {
+    navigate("/checkout?step=2")
+  }
   return (
     <div>
       {/* Title */}
-      <p className=' lg:mx-20 mx-4 text-2xl font-semibold text-gray-700'>Giỏ hàng </p>
+      <p className=' lg:mx-20 mx-4 text-2xl font-semibold text-gray-700 '>Giỏ hàng </p>
 
 
       <div className='lg:grid grid-cols-3 lg:px-16 relative '>
@@ -47,7 +52,7 @@ const Cart = () => {
               <p className='text-xs font-thin'>Đối với những sản phẩm có sẵn tại khu vực, CESPIN sẽ giao hàng trong vòng 2-7 ngày.
                 Đối với những sản phẩm không có sẵn, thời gian giao hàng sẽ được nhân viên CESPIN thông báo đến quý khách.</p>
               <div className='flex justify-between pt-3 uppercase  text-black'>
-                <button variant='contained' className='w-full shadow-lg bg-green-600 hover:bg-green-700'  >
+                <button onClick={handleCheckout} variant='contained' className='w-full shadow-lg bg-green-600 hover:bg-green-700'  >
                   <p className='uppercase font-bold text-white p-2'>CHECK OUT</p>
                 </button>
               </div>

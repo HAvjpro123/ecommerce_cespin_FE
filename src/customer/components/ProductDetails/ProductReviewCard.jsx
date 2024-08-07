@@ -3,12 +3,16 @@ import { Grid, Avatar, Box, Rating } from '@mui/material'
 const ProductReviewCard = () => {
     return (
         <div >
+            {/* Grid hiển thị bình luận của người mua */}
             <Grid className='border-b pb-2' container spacing={2} gap={3}>
+                {/* Grid hiển thị avt người mua */}
                 <Grid item xs={2} md={1.5}>
                     <Box>
                         <Avatar className='text-white' sx={{ width: 54, height: 54, bgcolor: "#9155fd" }}></Avatar>
                     </Box>
                 </Grid>
+
+                {/* Grid hiển thị thông tin & thời gian & đánh giá & bình luận của người mua */}
                 <Grid item xs={8} md={8.5}>
                     <div className=''>
                         <div className=''>
