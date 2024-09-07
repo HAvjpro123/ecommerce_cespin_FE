@@ -63,7 +63,7 @@ const Footer = () => {
                             <div className='mb-2 text-gray-300 hover:text-white'>
                                 <Space.Compact style={{ width: '100%' }} >
                                     <Input className='rounded-none' placeholder="Nhập mail của bạn" />
-                                    <Button  className='rounded-none bg-black text-white'  >ĐĂNG KÝ</Button>
+                                    <Button  className='rounded-none bg-gray-500  text-white'  >ĐĂNG KÝ</Button>
                                 </Space.Compact>
 
                             </div>

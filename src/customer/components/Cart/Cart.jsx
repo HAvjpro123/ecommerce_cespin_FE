@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CartItem from './CartItem'
 import { Button, Divider } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCart } from '../../../State/Cart/Action'
 
 const Cart = () => {
   const navigate = useNavigate();
+  const { cart } = useSelector(store => store)
+  const dispatch = useDispatch();
+
+
   const handleCheckout = () => {
     navigate("/checkout?step=2")
   }
+
+  useEffect(() => {
+    dispatch(getCart())
+  }, [cart.updateCartItem, cart.deleteCartItem])
   return (
     <div>
       {/* Title */}
@@ -17,36 +27,37 @@ const Cart = () => {
       <div className='lg:grid grid-cols-3 lg:px-16 relative '>
         {/* Item Cart */}
         <div className='col-span-2'>
-          <CartItem />
-          <CartItem />
-          <CartItem />
+          {cart.cart?.cartItems.map((item, index) =>
+            <CartItem key={index} item={item} />
+          )}
+
         </div>
 
-        {/* Bill Details */}
+        {/* Bi ll Details */}
         <div className='p-4 sticky top-0 h-[100vh]  lg:mt-0'>
           <div className=' border border-gray-300 '>
             <div className='p-4'>
-              <p className='uppercase font-bold opacity-60 '>Price Details</p>
+              <p className='uppercase font-bold opacity-60 '>Chi tiết hóa đơn </p>
             </div>
 
             <hr />
 
             <div className='space-y-3 font-semibold p-4'>
               <div className='flex justify-between pt-2 text-gray-700'>
-                <span>Price: </span>
-                <span className='text-green-500'>$400</span>
+                <span>Giá: </span>
+                <span className='text-green-500'>{cart.cart?.totalPrice}$</span>
               </div>
               <div className='flex justify-between pt-2 text-gray-700'>
-                <span>Discount </span>
-                <span className='text-green-500'>-$100</span>
+                <span>Giảm giá: </span>
+                <span className='text-green-500'>-{cart.cart?.discounte}$</span>
               </div>
               <div className='flex justify-between pt-2 text-gray-700'>
-                <span>Delivery Charge </span>
-                <span className='text-green-500'>Free</span>
+                <span>Phí vận chuyển: </span>
+                <span className='text-green-500'>Miễn phí</span>
               </div>
               <div className='flex justify-between border-t border-gray-300 pt-3 uppercase font-bold text-gray-700'>
-                <span>Delivery Charge </span>
-                <span className='text-green-500'>$300</span>
+                <span className='text-lg'>TỔNG SỐ TIỀN:</span>
+                <span className='text-green-500 text-lg'>{cart.cart?.totalDiscountedPrice}$</span>
               </div>
               <p className='text-sm'>Thông Tin Giao Hàng</p>
               <p className='text-xs font-thin'>Đối với những sản phẩm có sẵn tại khu vực, CESPIN sẽ giao hàng trong vòng 2-7 ngày.

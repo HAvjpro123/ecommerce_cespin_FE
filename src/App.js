@@ -1,26 +1,37 @@
-import { Route, Routes } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
-import Cart from './customer/components/Cart/Cart';
-import Checkout from './customer/components/Checkout/Checkout';
-import Footer from './customer/components/Footer/Footer';
-import Navigation from './customer/components/Navigation/Navigation';
-import Order from './customer/components/Order/Order';
-import OrderDetails from './customer/components/Order/OrderDetails';
-import Product from './customer/components/Product/Product';
-import ProductDetails from './customer/components/ProductDetails/ProductDetails';
-import HomePage from './customer/pages/HomePage/HomePage';
-import CustomerRouters from './Routers/CustomerRouters';
+import { routes } from './Routers';
+import Default from './customer/components/Default/Default';
+import { useSelector } from 'react-redux';
+import Footer from "./customer/components/Footer/Footer";
 
 function App() {
+  const { auth } = useSelector(store => store);
+
   return (
-    <div className="">
+    <div>
       <div>
         <Routes>
-          <Route path='/*' element={<CustomerRouters/>}/>
+          {routes.map((route) => {
+            const Page = route.page;
+            const ischeckAuth = !route.isPrivate || auth.user?.role === "admin";
+            const Layout = route.isShowHeader ? Default : Fragment;
+            return (
+              <Route key={route.path} path={ischeckAuth ? route.path : undefined}  element={(
+                <Layout>
+                  <div className="pt-28">
+                    <Page />
+                  </div>
+                </Layout>
+              )} />
+            );
+          })}
         </Routes>
       </div>
-      
-      {/* <Footer /> */}
+      <div>
+        <Footer/>
+      </div>
     </div>
   );
 }

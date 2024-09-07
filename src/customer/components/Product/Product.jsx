@@ -12,7 +12,7 @@
   }
   ```
 */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -27,7 +27,6 @@ import {
 } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
-import { interior } from '../../../Data/Interior'
 import ProductCard from './ProductCard'
 import { singleFilter, filter } from './FilterData'
 import Radio from '@mui/material/Radio';
@@ -36,7 +35,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { findProducts } from '../../../State/Product/Action'
+import { Pagination } from '@mui/material'
 // option data
 const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
@@ -52,6 +54,29 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
+  const param = useParams()
+  const dispatch = useDispatch()
+  const { products } = useSelector(store => store)
+  // console.log("pages: ", product.products.totalpages)
+
+  const decodedQueryString = decodeURIComponent(location.search);
+  const searchParams = new URLSearchParams(decodedQueryString);
+  const colorValue = searchParams.get("color")
+  const sizeValue = searchParams.get("size") ;
+  const priceValue = searchParams.get("price")
+  const discount = searchParams.get("discount")
+  const sortValue = searchParams.get("sort");
+  const pageNumber = searchParams.get("page") || 1;
+  const stock = searchParams.get("stock") ;
+
+  const handlePaginationChange = (event, value) => {
+    const searchParams = new URLSearchParams(location.search)
+    searchParams.set("page", value);
+    const query = searchParams.toString();
+    console.log(searchParams, value)
+    navigate({search:`?${query}`})
+
+  }
 
   const handleFilter = (value, sectionId) => {
 
@@ -85,6 +110,29 @@ export default function Product() {
     const query = searchParams.toString();
     navigate({ search: `?${query}` })
   }
+
+  useEffect(() => {
+
+    const [minPrice, maxPrice] = priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
+    const data = {
+      category: param.lavelThree,
+      colors: colorValue || [],
+      sizes: sizeValue || [],
+      minPrice,
+      maxPrice,
+      minDiscount: discount || 0,
+      sort: sortValue || "price_low",
+      pageNumber: pageNumber - 1,
+      pageSize: 8,
+      stock: stock 
+    }
+    dispatch(findProducts(data))
+    console.log("data", data)
+
+  }, [param.lavelThree, colorValue, sizeValue, priceValue, discount, sortValue, pageNumber, stock])
+
+
+
   return (
     <div className="bg-white">
       <div>
@@ -294,10 +342,10 @@ export default function Product() {
                                   defaultValue="female"
                                   name="radio-buttons-group"
                                 >
-                                  {section.options.map((option, optionIdx) => (
+                                  {section.options.map((option, index) => (
 
                                     <>
-                                      <FormControlLabel onChange={(e) => handleRadioFilterChange(e, section.id)} value={option.value} control={<Radio />} label={option.label} />
+                                      <FormControlLabel key={index} onChange={(e) => handleRadioFilterChange(e, section.id)} value={option.value} control={<Radio />} label={option.label} />
                                     </>
 
                                   ))}
@@ -315,7 +363,18 @@ export default function Product() {
               {/*Hiển thị sản phẩm */}
               <div className="lg:col-span-3 w-full ">
                 <div className='flex flex-wrap justify-center lg:justify-between bg-white py-4'>
-                  {interior.map((item) => <ProductCard product={item} />)}
+                  {products.products && products.products?.content?.map((item) => (
+                    <ProductCard key={item.id} product={item} />
+                    ))}
+                </div>
+
+                <div className='w-full px=[3.6rem]'>
+                  <div className='px-4 py-5 flex justify-center'>
+                    <Pagination
+                      count={products.products?.totalPages} color="success"
+                      onChange={handlePaginationChange}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

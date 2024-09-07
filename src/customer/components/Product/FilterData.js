@@ -16,26 +16,27 @@ export const color = [
 export const filter = [
     {
         id: "color",
-        name: "Color",
+        name: "Màu sắc",
         options: [
-            { value: "white", label: "White" },
-            { value: "black", label: "Black" },
-            { value: "red", label: "Red" },
-            { value: "green", label: "Green" },
-            { value: "blue", label: "Blue" },
-            { value: "yellow", label: "Yellow" },
-            { value: "gray", label: "Gray" },
-            { value: "beige", label: "Beige" },
-            { value: "purple", label: "Purple" },
+            { value: "white", label: "Trắng" },
+            { value: "black", label: "Đen" },
+            { value: "red", label: "Đỏ" },
+            { value: "green", label: "Xanh lá" },
+            { value: "blue", label: "Xanh dương" },
+            { value: "yellow", label: "Vàng" },
+            { value: "gray", label: "Xám" },
+            { value: "beige", label: "Be" },
+            { value: "purple", label: "Tím" },
+            { value: "brown", label: "Nâu" },
         ]
     },
     {
         id: "size",
-        name: "Size",
+        name: "Kích cỡ",
         options: [
-            { value: "S", label: "Small" },
-            { value: "M", label: "Medium" },
-            { value: "L", label: "Large" },
+            { value: "S", label: "Nhỏ" },
+            { value: "M", label: "Vừa" },
+            { value: "L", label: "Lớn" },
         ],
     }
 ];
@@ -43,20 +44,20 @@ export const filter = [
 export const singleFilter = [
     {
         id: "price",
-        name: "Price",
+        name: "Mức giá",
         options: [
-            { value: "59-199", label: "59$ To 199$" },
-            { value: "199-499", label: "199$ To 499$" },
-            { value: "499-999", label: "499$ To 999$" },
-            { value: "999-1999", label: "999$ To 1999$" },
-            { value: "1999-3999", label: "1999$ To 3999$" },
-            { value: "3999-5999", label: "3999$ To 5999$" },
-            { value: "5999-9999", label: "5999$ To 9999$" },
+            { value: "59-199", label: "59$ - 199$" },
+            { value: "199-499", label: "199$ - 499$" },
+            { value: "499-999", label: "499$ - 999$" },
+            { value: "999-1999", label: "999$ - 1999$" },
+            { value: "1999-3999", label: "1999$ - 3999$" },
+            { value: "3999-5999", label: "3999$ - 5999$" },
+            { value: "5999-9999", label: "5999$ - 9999$" },
         ]
     },
     {
         id: "discount",
-        name: "Discount Range",
+        name: "Giảm giá",
         options: [
             { value: "10", label: "10% And Above " },
             { value: "20", label: "20% And Above " },
@@ -69,10 +70,10 @@ export const singleFilter = [
     },
     {
         id: "stock",
-        name: "Availability",
+        name: "Số lượng ",
         options: [
-            { value: "in stock", label: "In Stock"},
-            { value: "out of stock", label: "Out Of Stock"},
+            { value: "in stock", label: "Còn hàng"},
+            { value: "out of stock", label: "Hết hàng"},
            ,
         ]
     },

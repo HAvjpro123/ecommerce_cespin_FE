@@ -18,8 +18,8 @@ const OderCard = () => {
                         {/* Thông tin sản phẩm */}
                         <div className='ml-5 space-y-2'>
                             <p className='overflow-hidden line-clamp-2 text-ellipsis'>BÌNH GẦY LÀM TỪ LÀNG GỐM BÁT TRÀNG </p>
-                            <p className='text-gray-700 text-xs font-thin'>Size: Large</p>
-                            <p className='text-gray-700 text-xs font-thin' >Color: Green</p>
+                            <p className='text-gray-700 text-xs font-thin'>Kích thước: Large</p>
+                            <p className='text-gray-700 text-xs font-thin' >Màu sắc: Green</p>
                             <p className='text-gray-700 text-xs'>Số lượng: 1</p>
                         </div>
                     

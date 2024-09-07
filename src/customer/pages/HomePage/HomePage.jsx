@@ -4,19 +4,21 @@ import HomeSectionCarousel from '../../components/HomeSectionCarousel/HomeSectio
 import HomeBanner from '../../components/HomeBanner/HomeBanner'
 import HomeSectionCarousel2 from '../../components/HomeSectionCarousel/HomeSectionCarousel2'
 
+
 const HomePage = () => {
+
+
   return (
     <div className=''>
 
       <HomeBanner />
-      <div className='space-y-10 py-10 flex flex-col justify-center '>
-        <HomeSectionCarousel/>
+
+      <div className='pb-4 flex flex-col justify-center mt-8'>
+        <HomeSectionCarousel2 title={"Đồ nội thất"} category={"Bàn_ăn"} />
       </div>
 
-      <MainCarousel />
-
-      <div className='space-y-10 pb-10 flex flex-col justify-center'>
-        <HomeSectionCarousel2 />
+      <div className='my-6'>
+        <MainCarousel />
       </div>
 
     </div>

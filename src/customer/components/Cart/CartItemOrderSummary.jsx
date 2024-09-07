@@ -5,7 +5,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDispatch } from 'react-redux';
 import { removeCartItem, updateCartItem } from '../../../State/Cart/Action';
-const CartItem = ({item}) => {
+const CartItemOrderSummary = ({item}) => {
   const dispatch = useDispatch();
 
   const handleUpdateCartItem=(num) =>{
@@ -26,7 +26,7 @@ const CartItem = ({item}) => {
 
         {/* Product Item Info */}
         <div className='ml-5 space-y=1 text-sm lg:text-md '>
-          <p className='font-semibold mb-4 text-xl text-gray-700 overflow-hidden leading-7 line-clamp-2 text-ellipsis'>{item.product.title}</p>
+          <p className='font-semibold mb-4 text-xl text-gray-700 overflow-hidden leading-7 line-clamp-3 text-ellipsis'>{item.product.title}</p>
           <p className='text-gray-600 text-sm'>Kích thước: {item.size}, {item.product.color}</p>
           <p className='mt-2 text-gray-600 text-sm'>Vật liệu: {item.product.brand}</p>
 
@@ -35,27 +35,16 @@ const CartItem = ({item}) => {
             <p className='text-gray-500 line-through'>{item.price}$</p>
             <p className='text-green-600 font-semibold'>{item.product.discountPresent}% off</p>
           </div>
+
+          <p className='mt-2 text-gray-600 text-sm'>Số lượng: {item.quantity}</p>
         </div>
 
       </div>
 
-      {/* Total Btn */}
-      <div className='-mx-2 flex items-center border-t border-gray-300 pt-2'>
-        <div className='flex items-center ml-4 lg:space-x-1 '>
-          <IconButton onClick={() => handleUpdateCartItem(-1)} sx={{ color: "rgb(22 163 74)" }} disabled={item.quantity<=1} >
-            <RemoveCircleOutlineIcon />
-          </IconButton>
-          <span className='py-1 px-6 border border-gray-300 rounded-none '>{item.quantity}</span>
-          <IconButton onClick={() => handleUpdateCartItem(1)} sx={{ color: "rgb(22 163 74)" }}>
-            <AddCircleOutlineIcon />
-          </IconButton>
-        </div>
-        <div className='ml-auto'>
-          <Button onClick={handleRemoveCartItem}><p className='text-red-400'>XÓA <HighlightOffIcon sx={{fontSize: 18}} className='mb-0.5'/></p></Button>
-        </div>
-      </div>
+      
+     
     </div>
   )
 }
 
-export default CartItem
+export default CartItemOrderSummary

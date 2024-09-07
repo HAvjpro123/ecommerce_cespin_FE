@@ -9,19 +9,15 @@ import { useLocation } from 'react-router-dom';
 import DeliveryAddressForm from './DeliveryAddressForm';
 import OrderSummary from './OrderSummary';
 
-const steps = ['Log In', 'Add Delevery Address', 'Order Sumary', 'Payment'];
+const steps = ['Đăng nhập', 'Điền thông tin liên hệ', 'Xác nhận đơn hàng', 'Thanh toán'];
 
 export default function Checkout() {
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState();
     // const [skipped, setSkipped] = React.useState(new Set());
     const location = useLocation();
     const querySearch = new URLSearchParams(location.search);
     
     const step = querySearch.get("step")
-    
-    // const handleNext = () => {
-    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -59,14 +55,15 @@ export default function Checkout() {
                                 onClick={handleBack}
                                 sx={{ mr: 1 }}
                             >
-                                Back
+                                Quay lại
                             </Button>
                           
                         </Box>
 
                         {/* Step hiển thị các bước thanh toán */}
                         <div className='my-5'>
-                            {step==2?<DeliveryAddressForm/>:<OrderSummary/>}
+                            {step==2 && (<DeliveryAddressForm/>)}
+                            {step==3 && (<OrderSummary/>)}
                         </div>
                     </React.Fragment>
                 )}

@@ -1,6 +1,6 @@
 import { Grid, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../State/Auth/Action';
 
@@ -8,8 +8,10 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [showAlert, setShowAlert] = useState('');
+    const { auth } = useSelector(store => store)
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async  (event) => {
         event.preventDefault()
 
         const data = new FormData(event.currentTarget);
@@ -17,11 +19,14 @@ const LoginForm = () => {
         const userData = {
             email: data.get("email"),
             password: data.get("password")
+        };  
+        try {
+            await dispatch(login(userData)); // Chờ cho tới khi dispatch hoàn thành
+            setShowAlert(''); // Xóa thông báo lỗi nếu đăng nhập thành công
+        } catch (error) {
+            setShowAlert('Email hoặc mật khẩu không đúng!'); // Hiển thị thông báo lỗi khi đăng nhập thất bại
         }
-
-        dispatch(login(userData))
-        setShowAlert('Nhập sai email hoặc mật khẩu!')
-
+    
         console.log("userData", userData)
     }
 

@@ -47,6 +47,7 @@ export const login=(userData)=> async (dispatch)=>{
         dispatch(loginSuccess(user.jwt))
     } catch (error) {
         dispatch(loginFailure(error.message))
+        throw error;
     }
 
 }

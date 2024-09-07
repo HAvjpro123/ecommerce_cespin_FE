@@ -1,5 +1,4 @@
 import logo from '../../../Asset/CarouselImage/logo.png'
-import a1 from '../../../Asset/ProductImage/a1-binh-nau.png'
 import { NavigationData } from '../Navigation/NavigationData'
 import './NavigationData'
 import { Fragment, useEffect, useState } from 'react'
@@ -38,8 +37,8 @@ export default function Navigation() {
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
   const { auth } = useSelector(store => store)
-  const dispatch=useDispatch();
-  const location=useLocation();
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,12 +53,24 @@ export default function Navigation() {
   };
 
   const handleClose = () => {
-    setOpenAuthModal(false);
+    if (jwt) {
+        // Chỉ đóng modal nếu có JWT
+        setOpenAuthModal(false);
+    } else {
+        // Thực hiện hành động khác hoặc hiển thị thông báo
+        console.log("No JWT found, cannot close modal.");
+    }
   };
 
   const handleCategoryClick = (category, section, item,) => {
     navigate(`/${category.id}/${section.id}/${item.id}`);
   };
+
+  useEffect(() => {
+    if (!jwt) {
+      setOpenAuthModal(true)
+    } 
+  }, [jwt, auth.jwt])
 
   useEffect(() => {
     if (jwt) {
@@ -68,18 +79,18 @@ export default function Navigation() {
   }, [jwt, auth.jwt])
 
   useEffect(() => {
-
-    if(auth.user) {
+    if (auth.user) {
       handleClose();
     }
-    if(location.pathname==="/login" || location.pathname==="/register") {
+    if (location.pathname === "/login" || location.pathname === "/register") {
       navigate(-1)
     }
   }, [auth.user])
 
-  const handleLogout=()=> {
+  const handleLogout = () => {
     dispatch(logout())
     handleCloseUserMenu();
+    navigate("/")
   }
 
 
@@ -227,7 +238,7 @@ export default function Navigation() {
           </DialogPanel>
         </div>
       </Dialog>
-      
+
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-green-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over $100
@@ -310,7 +321,7 @@ export default function Navigation() {
                                       </div>
                                     ))}
                                   </div>
-                                  <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                                  <div className="row-start-1 grid grid-cols-4 gap-x-8 gap-y-10 text-sm">
                                     {category.sections.map((section) => (
                                       <div key={section.name}>
                                         <p id={`${section.name}-heading`}
@@ -370,9 +381,9 @@ export default function Navigation() {
 
                 {/* Signin button */}
                 <div>
-                  {auth.user?.firstName ? (
+                  {auth.user?.firstName  ? (
                     <div className=" lg:flex lg:flex-1 lg:items-center lg:justify-end ">
-                      <Avatar 
+                      <Avatar
                         className='text-white'
                         aria-controls={open ? 'basic-menu' : undefined}
                         aria-haspopup="true"
@@ -380,11 +391,11 @@ export default function Navigation() {
                         onClick={handleUserClick}
                         sx={{
                           bgcolor: green[500],
-                          cursor:'pointer',
+                          cursor: 'pointer',
                           color: 'white'
                         }}
                       >
-                        
+
                         {auth.user?.firstName[0].toUpperCase()}
                       </Avatar>
 
@@ -397,12 +408,16 @@ export default function Navigation() {
                           'aria-labelledby': 'basic-button',
                         }}
                       >
-                        <p className='font-semibold text-md mx-4 mb-2'>Tùy chỉnh</p>
+                        <p className='font-semibold text-lg mx-4 mb-2'>Tùy chỉnh</p>
                         <div className='text-gray-700 text-sm'>
 
                           <MenuItem onClick={handleCloseUserMenu}>Hồ sơ người dùng</MenuItem>
                           <MenuItem onClick={() => navigate("/account/order")}>Đơn đặt hàng</MenuItem>
+                          {auth.user?.role==="admin" && (
+                            <MenuItem onClick={() => navigate("/admin")}>Quản lý hệ thống</MenuItem>
+                          )}
                           <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
+                          
                         </div>
 
                       </Menu>
@@ -416,14 +431,15 @@ export default function Navigation() {
                 </div>
 
 
+
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
+                      onClick={() => navigate('/cart')}
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>
                 </div>
