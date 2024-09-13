@@ -29,7 +29,7 @@ const DeliveryAddressForm = () => {
     }
 
     return (
-        <div>
+        <div className=''>
             <Grid container className='justify-between '>
                 {/* Grid tiêu đề */}
                 <Grid item xs={12} lg={4.8} className='border border-gray-300 rounded-none h-auto overflow-y-scroll '>

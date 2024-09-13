@@ -141,7 +141,7 @@ export default function ProductDetails() {
     return (
         <div>
 
-            <div className="bg-white lg:px-20 z-0">
+            <div className="bg-white lg:px-20 z-0 pt-28">
                 <Backdrop
                     sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
                     open={open}

@@ -19,7 +19,7 @@ const Cart = () => {
     dispatch(getCart())
   }, [cart.updateCartItem, cart.deleteCartItem])
   return (
-    <div>
+    <div className='pt-28'>
       {/* Title */}
       <p className=' lg:mx-20 mx-4 text-2xl font-semibold text-gray-700 '>Giỏ hàng </p>
 

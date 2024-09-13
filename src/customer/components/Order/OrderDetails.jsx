@@ -6,7 +6,7 @@ import a1 from '../../../Asset/ProductImage/a1-binh-nau.png'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 const OrderDetails = () => {
     return (
-        <div className='p-5 lg:px-20 '>
+        <div className='p-5 lg:px-20 pt-28'>
             <div className='p-5 border border-gray-300 my-10'>
                 <h1 className='font-bold text-xl pb-6'>Delivery Address</h1>
                 <AddressCard />

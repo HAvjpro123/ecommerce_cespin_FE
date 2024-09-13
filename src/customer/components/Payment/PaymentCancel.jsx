@@ -20,7 +20,7 @@ const PaymentCancel = () => {
 
 
     return (
-        <div className='px-2 lg:px-36 pt-10'>
+        <div className='px-2 lg:px-36 pt-36'>
             <div className='flex flex-col justify-center items-center'>
                 <Alert variant='filled' severity='warning' sx={{ mb: 6, with: "fit-content" }}>
                     <AlertTitle>THANH TOÁN BỊ HỦY</AlertTitle>

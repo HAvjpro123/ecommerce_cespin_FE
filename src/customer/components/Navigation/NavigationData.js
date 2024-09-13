@@ -125,16 +125,18 @@ export const NavigationData = {
     ],
   }
 
-  window.addEventListener('scroll', function() {
-    var myDiv = document.getElementById('myDiv');
-  
-    var scrollPosition = window.scrollY;
-  
-    if (scrollPosition >= 0) { // Khoảng cách từ đỉnh trang để thẻ div biến mất
-      myDiv.classList.add('fixed');
-     
-    } else {
-      myDiv.classList.remove('fixed');
-    }
+  document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('scroll', function() {
+      var myDiv = document.getElementById('myDiv');
+    
+      if (myDiv) { // Kiểm tra xem phần tử có tồn tại không
+        var scrollPosition = window.scrollY;
+        if (scrollPosition >= 0) {
+          myDiv.classList.add('fixed');
+        } else {
+          myDiv.classList.remove('fixed');
+        }
+      }
+    });
   });
 

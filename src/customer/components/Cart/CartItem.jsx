@@ -42,16 +42,17 @@ const CartItem = ({item}) => {
       {/* Total Btn */}
       <div className='-mx-2 flex items-center border-t border-gray-300 pt-2'>
         <div className='flex items-center ml-4 lg:space-x-1 '>
+          <p>Số lượng: </p>
           <IconButton onClick={() => handleUpdateCartItem(-1)} sx={{ color: "rgb(22 163 74)" }} disabled={item.quantity<=1} >
             <RemoveCircleOutlineIcon />
           </IconButton>
-          <span className='py-1 px-6 border border-gray-300 rounded-none '>{item.quantity}</span>
+          <span className='py-1 px-4  border border-gray-300 rounded-none '>{item.quantity}</span>
           <IconButton onClick={() => handleUpdateCartItem(1)} sx={{ color: "rgb(22 163 74)" }}>
             <AddCircleOutlineIcon />
           </IconButton>
         </div>
-        <div className='ml-auto'>
-          <Button onClick={handleRemoveCartItem}><p className='text-red-400'>XÓA <HighlightOffIcon sx={{fontSize: 18}} className='mb-0.5'/></p></Button>
+        <div className='ml-auto '>
+          <Button onClick={handleRemoveCartItem}><p className='text-red-400 hover:text-red-500'>XÓA <HighlightOffIcon sx={{fontSize: 18}} className='mb-0.5'/></p></Button>
         </div>
       </div>
     </div>

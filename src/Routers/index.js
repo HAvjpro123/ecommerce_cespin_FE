@@ -1,4 +1,3 @@
-import Admin from "../customer/Auth/Admin";
 import Cart from "../customer/components/Cart/Cart";
 import Checkout from "../customer/components/Checkout/Checkout";
 import Order from "../customer/components/Order/Order";
@@ -9,7 +8,7 @@ import PaymentSuccess from "../customer/components/Payment/PaymentSuccess";
 import NotFoundPage from "../customer/NotFoundPage/NotFoundPage";
 import HomePage from "../customer/pages/HomePage/HomePage";
 import PaymentCancel from "../customer/components/Payment/PaymentCancel";
-
+import Admin from "../Admin/components/Admin";
 
 export const routes = [
     {
@@ -68,9 +67,9 @@ export const routes = [
         isShowHeader: true
     },
     {
-        path: '/admin',
+        path: '/admin/*',
         page: Admin,
-        isShowHeader: true,
+        isShowHeader: false,
         isPrivate: true
     },
     {

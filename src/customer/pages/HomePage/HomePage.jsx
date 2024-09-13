@@ -9,7 +9,7 @@ const HomePage = () => {
 
 
   return (
-    <div className=''>
+    <div className='pt-28'>
 
       <HomeBanner />
 
@@ -21,6 +21,7 @@ const HomePage = () => {
         <MainCarousel />
       </div>
 
+      
     </div>
   )
 }

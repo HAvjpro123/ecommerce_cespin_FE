@@ -8,12 +8,10 @@ import AlertTitle from '@mui/material/AlertTitle';
 import OderTraker from '../Order/OderTraker'
 import Grid from '@mui/material/Grid';
 import { getOrderById } from '../../../State/Order/Action'
-import a1 from '../../../Asset/ProductImage/a1-binh-nau.png'
 import AddressCard from '../AddressCard/AddressCard'
 const PaymentSuccess = () => {
     const [paymentId, setPaymentId] = useState()
     const [referenceId, setReferenceId] = useState()
-    const [paymentStatus, setPaymentStatus] = useState()
     const { orderId } = useParams()
 
     const dispatch = useDispatch();
@@ -40,7 +38,7 @@ const PaymentSuccess = () => {
 
 
     return (
-        <div className='px-2 lg:px-36'>
+        <div className='px-2 lg:px-36 pt-28'>
             <div className='flex flex-col justify-center items-center'>
                 <Alert variant='filled' severity='success' sx={{ mb: 6, with: "fit-content" }}>
                     <AlertTitle>Payment Success</AlertTitle>

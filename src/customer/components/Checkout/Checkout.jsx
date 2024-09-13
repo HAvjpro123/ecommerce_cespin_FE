@@ -24,7 +24,7 @@ export default function Checkout() {
     };
  
     return (
-        <div className='px-4 lg:px-20 mt-4 '>
+        <div className='px-4 lg:px-20 pt-32'>
             {/* Hiển thị step thanh toán */}
             <Box sx={{ width: '100%' }}>
                 <Stepper alternativeLabel className='text-xs' activeStep={step}>

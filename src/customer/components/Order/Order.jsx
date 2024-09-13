@@ -10,7 +10,7 @@ const orderStatus = [
 
 const Order = () => {
   return (
-    <div className='lg:px-20 pt-6 px-4'>
+    <div className='lg:px-20 pt-36 px-4'>
       <Grid container sx={{ justifyContent: "space-between" }}>
         <Grid item xs={12} lg={2.5} className='pb-4'>
           <div className='h-auto border border-gray-300 bg-white p-5 sticky top5'>

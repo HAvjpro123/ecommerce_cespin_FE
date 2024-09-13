@@ -18,9 +18,9 @@ function App() {
             const ischeckAuth = !route.isPrivate || auth.user?.role === "admin";
             const Layout = route.isShowHeader ? Default : Fragment;
             return (
-              <Route key={route.path} path={ischeckAuth ? route.path : undefined}  element={(
+              <Route key={route.path} path={ischeckAuth ? route.path : undefined} element={(
                 <Layout>
-                  <div className="pt-28">
+                  <div className="">
                     <Page />
                   </div>
                 </Layout>
@@ -28,9 +28,7 @@ function App() {
             );
           })}
         </Routes>
-      </div>
-      <div>
-        <Footer/>
+      
       </div>
     </div>
   );
