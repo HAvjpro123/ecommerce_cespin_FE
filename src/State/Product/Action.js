@@ -1,5 +1,5 @@
 
-import { CREATE_PRODUCT_FATLURE, CREATE_PRODUCT_REQUEST, CREATE_PRODUCT_SUCCESS, DELETE_PRODUCT_FATLURE, DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS, FIND_PRODUCTS_FATLURE, FIND_PRODUCTS_REQUEST, FIND_PRODUCTS_SUCCESS } from "./ActionType";
+import { CREATE_PRODUCT_FATLURE, CREATE_PRODUCT_REQUEST, CREATE_PRODUCT_SUCCESS, DELETE_PRODUCT_FATLURE, DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS, FIND_PRODUCTS_FATLURE, FIND_PRODUCTS_REQUEST, FIND_PRODUCTS_SUCCESS, UPDATE_PRODUCT_FATLURE, UPDATE_PRODUCT_REQUEST, UPDATE_PRODUCT_SUCCESS } from "./ActionType";
 import { api, API_BASE_URL } from "../../Config/apiConfig";
 
 
@@ -60,3 +60,13 @@ export const deleteProduct = (productId) => async(dispatch) => {
         dispatch({type:DELETE_PRODUCT_FATLURE, payload:error.message})
     }
 }
+
+export const updateProduct = (productId, productData) => async (dispatch) => {
+    dispatch({ type: UPDATE_PRODUCT_REQUEST });
+    try {
+        const { data } = await api.put(`${API_BASE_URL}/api/admin/products/${productId}/update`, productData);
+        dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: UPDATE_PRODUCT_FATLURE, payload: error.message });
+    }
+};

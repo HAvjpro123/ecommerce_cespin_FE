@@ -80,6 +80,9 @@ const ProductsTable = () => {
                   <TableCell align="left">
                     <Button onClick={() => handleProductDelete(item.id)} variant='outlined'>Xóa</Button>
                   </TableCell>
+                  <TableCell align="left">
+                    {/* khi ấn vào button ở đây thì có thể chỉnh sửa sản phẩm  */}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
