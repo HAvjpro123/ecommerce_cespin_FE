@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { findProductsById } from '../../../State/Product/Action'
 import { addItemToCart } from '../../../State/Cart/Action';
 import HomeSectionCarousel2 from '../HomeSectionCarousel/HomeSectionCarousel2';
-import BackdropComponent from '../Backdrop/BackdropComponent';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 

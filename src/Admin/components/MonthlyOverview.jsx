@@ -35,7 +35,7 @@ const saleData = [
 
 const renderStats = () => {
     return saleData.map((item, index) => (
-        <Grid item xs={12} sm={3} key={index}>
+        <Grid item xs={12} sm={3} md={3} key={index}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar variant='rounded' sx={{ mr: 3, width: 55, height: 55, boxShadow: 3, color: 'white', backgroundColor: `${item.color}` }}>
                     {item.icon}

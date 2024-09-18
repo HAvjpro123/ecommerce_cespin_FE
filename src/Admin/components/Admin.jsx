@@ -47,6 +47,7 @@ import { Avatar, Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from '../../State/Auth/Action'
+import BlogTable from './BlogTable';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -127,7 +128,7 @@ function Admin(props) {
         { name: "Người dùng", path: "/admin/customers", icon: <PeopleOutlineRoundedIcon /> },
         { name: "Đơn hàng", path: "/admin/orders", icon: <ArticleRoundedIcon /> },
         { name: "Bài viết", path: "/admin/blogs", icon: <NewspaperRoundedIcon /> },
-        { name: "Thêm sản phẩm", path: "/admin/create-product", icon: <PlaylistAddRoundedIcon /> },
+        { name: "Thêm sản phẩm", path: "/admin/create_product", icon: <PlaylistAddRoundedIcon /> },
         { name: "", path: "" },
     ]
 
@@ -299,6 +300,7 @@ function Admin(props) {
                     <Route path='/create-product' element={<CreateProductForm />} ></Route>
                     <Route path='/products' element={<ProductsTable />} ></Route>
                     <Route path='/orders' element={<OrdersTable />} ></Route>
+                    <Route path='/blogs' element={<BlogTable />} ></Route>
                     <Route path='/customers' element={<CustomersTable />} ></Route>
                 </Routes>
             </Box>
