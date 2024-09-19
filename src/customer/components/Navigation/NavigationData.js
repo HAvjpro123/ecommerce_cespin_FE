@@ -37,7 +37,7 @@ export const NavigationData = {
             ],
           },
           {
-            id: 'accessories',
+            id: 'Ghe',
             name: 'Ghế',
             items: [
               { id:'Watches', name: 'Ghế ăb', href: '#' },
@@ -49,7 +49,7 @@ export const NavigationData = {
             ],
           },
           {
-            id: 'brands',
+            id: 'Khac',
             name: 'Khác',
             items: [
               { id:'Full Nelson', name: 'Đèn trang trí', href: '#' },

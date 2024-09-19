@@ -297,7 +297,7 @@ function Admin(props) {
                 <Toolbar />
                 <Routes>
                     <Route path='/' element={<AdminDashboard />} ></Route>
-                    <Route path='/create-product' element={<CreateProductForm />} ></Route>
+                    <Route path='/create_product' element={<CreateProductForm />} ></Route>
                     <Route path='/products' element={<ProductsTable />} ></Route>
                     <Route path='/orders' element={<OrdersTable />} ></Route>
                     <Route path='/blogs' element={<BlogTable />} ></Route>

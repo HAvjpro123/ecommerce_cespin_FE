@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,12 +12,10 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,11 +27,12 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextFi
 import { useState } from 'react';
 import EditNoteSharpIcon from '@mui/icons-material/EditNoteSharp';
 import DeleteOutlineSharpIcon from '@mui/icons-material/DeleteOutlineSharp';
-import { useParams } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Snackbar from '@mui/material/Snackbar';
+import CloseIcon from '@mui/icons-material/Close';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -204,16 +202,44 @@ export default function BlogTable() {
     const [imagePreview, setImagePreview] = useState('');
     const { products, updatedProduct } = useSelector((store) => store);
     const [category, setCategory] = useState('');  // Khởi tạo state để lưu category
+    const [color, setColor] = useState('');  // Khởi tạo state để lưu color
+    const [openSnackbarDelete, setOpenSnackbarDelete] = useState(false);
+    const [openSnackbarUpdate, setOpenSnackbarUpdate] = useState(false);
     const dispatch = useDispatch();
 
+    const handleCloseDelete = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbarDelete(false);
+    };
+    const handleCloseUpdate = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbarUpdate(false);
+    };
     const categories = [
         { id: 'Bàn_ăn', name: "Bàn ăn" },
         { id: 'Banben', name: "Bàn bên " },
     ];
 
+    const colors = [
+        { id: 'brown', name: "Nâu" },
+        { id: 'red', name: "Đỏ " },
+        { id: 'yellow', name: "Vàng" },
+        { id: 'white', name: "Trắng" },
+        { id: 'blue', name: "Xanh dương" },
+    ];
+
     const handleCategoryChange = (event) => {
         setCategory(event.target.value);  // Cập nhật giá trị category
     };
+
+    const handleColorChange = (event) => {
+        setColor(event.target.value);  // Cập nhật giá trị color
+    };
+
     const [productData, setProductData] = useState({
         title: '',
         imageUrl: '',
@@ -248,6 +274,7 @@ export default function BlogTable() {
             setSelectedItemId(null);
             setTimeout(() => {
                 setOpen(false);
+                setOpenSnackbarDelete(true)
             }, 1000);
         }
     };
@@ -276,6 +303,7 @@ export default function BlogTable() {
             setSelectedItemId(null);
             setTimeout(() => {
                 setOpen(false);
+                setOpenSnackbarUpdate(true)
             }, 1000);
         }
     };
@@ -297,10 +325,9 @@ export default function BlogTable() {
     }, [products.deletedProduct]);
 
     useEffect(() => {
-
         dispatch(findProducts({
             category: category,
-            colors: [],
+            colors: color,
             sizes: [],
             minPrice: 0,
             maxPrice: 1000000,
@@ -311,7 +338,7 @@ export default function BlogTable() {
             stock: ""
         }));
 
-    }, [products.updatedProduct, category]);
+    }, [products.updatedProduct, category, color]);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -372,17 +399,49 @@ export default function BlogTable() {
         [order, orderBy, page, rowsPerPage, products?.products?.content],
     );
 
+    const actionDelete = (
+        <React.Fragment>
+            <Button color="success" size="small" onClick={handleCloseDelete}>
+                Đóng
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleCloseDelete}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
+
+    const actionUpdate = (
+        <React.Fragment>
+            <Button color="success" size="small" onClick={handleCloseUpdate}>
+                Đóng
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleCloseUpdate}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
+
     return (
         <Box sx={{ width: '100%' }}>
+
             <div className='flex space-x-4'>
-                <div>
-                    <InputLabel id="category-label">Danh mục</InputLabel>
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 200 }}>
+                    <InputLabel id="demo-simple-select-filled-label">Phân loại mặt hàng</InputLabel>
                     <Select
-                        labelId="category-label"
-                        id="category-select"
+                        labelId="demo-simple-select-filled-label"
+                        id="demo-simple-select-filled"
                         value={category}
                         onChange={handleCategoryChange}
-                        label="Danh mục"
                     >
                         {categories.map((category) => (
                             <MenuItem key={category.id} value={category.id}>
@@ -390,31 +449,24 @@ export default function BlogTable() {
                             </MenuItem>
                         ))}
                     </Select>
-                </div>
-                <div>
-                    <InputLabel id="category-label">Danh mục</InputLabel>
+                </FormControl>
+
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 200 }}>
+                    <InputLabel id="demo-simple-select-filled-label">Màu sắc</InputLabel>
                     <Select
-                        labelId="category-label"
-                        id="category-select"
-                        value={category}
-                        onChange={handleCategoryChange}
-                        label="Danh mục"
+                        labelId="demo-simple-select-filled-label"
+                        id="demo-simple-select-filled"
+                        value={color}
+                        onChange={handleColorChange}
                     >
-                        {categories.map((category) => (
-                            <MenuItem key={category.id} value={category.id}>
-                                {category.name}
+                        {colors.map((color) => (
+                            <MenuItem key={color.id} value={color.id}>
+                                {color.name}
                             </MenuItem>
                         ))}
                     </Select>
-                </div>
+                </FormControl>
             </div>
-
-
-
-
-
-
-
 
             <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -422,6 +474,21 @@ export default function BlogTable() {
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
+
+            <Snackbar
+                open={openSnackbarDelete}
+                autoHideDuration={6000}
+                onClose={handleCloseDelete}
+                message="Xóa sản phẩm thành công"
+                action={actionDelete}
+            />
+            <Snackbar
+                open={openSnackbarUpdate}
+                autoHideDuration={6000}
+                onClose={handleCloseUpdate}
+                message="Sửa sản phẩm thành công"
+                action={actionUpdate}
+            />
 
             {/* Dialog xác nhận xóa */}
             <Dialog
@@ -436,7 +503,7 @@ export default function BlogTable() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => setOpenDeleted(false)}>Hủy</Button>
-                    <Button onClick={handleProductDelete} color='success'>Xác nhận</Button>
+                    <Button onClick={handleProductDelete} color='success' variant='outlined'>Xác nhận</Button>
                 </DialogActions>
             </Dialog>
 
@@ -469,6 +536,7 @@ export default function BlogTable() {
                         onChange={(e) => setProductData({ ...productData, title: e.target.value })}
                     />
                     <TextField
+                        multiline rows={4}
                         margin="dense"
                         label="Mô tả"
                         fullWidth
@@ -478,7 +546,7 @@ export default function BlogTable() {
                     />
                     <TextField
                         margin="dense"
-                        label="Giá"
+                        label="Giá gốc"
                         fullWidth
                         variant="outlined"
                         type="number"
@@ -487,7 +555,7 @@ export default function BlogTable() {
                     />
                     <TextField
                         margin="dense"
-                        label="Giá giảm"
+                        label="Giá đã giảm"
                         fullWidth
                         variant="outlined"
                         type="number"
@@ -531,8 +599,11 @@ export default function BlogTable() {
                     {/* Add other fields as needed */}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setOpenEdit(false)}>Hủy</Button>
-                    <Button onClick={handleEditProduct} color='success'>Lưu</Button>
+                    <div className='px-9'>
+                        <Button onClick={() => setOpenEdit(false)}>Hủy</Button>
+                        <Button onClick={handleEditProduct} color='success' variant='outlined'>Lưu</Button>
+                    </div>
+
                 </DialogActions>
             </Dialog>
 
