@@ -2,7 +2,7 @@ import React from 'react'
 
 const CustomersTable = () => {
   return (
-    <div>CustomersTable</div>
+    <div>CHƯA PHÁT TRIỂN</div>
   )
 }
 

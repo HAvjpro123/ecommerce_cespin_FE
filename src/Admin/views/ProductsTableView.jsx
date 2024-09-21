@@ -106,18 +106,7 @@ const headCells = [
         disablePadding: false,
         label: 'Số lượng',
     },
-    {
-        id: 'createdAt',
-        numeric: Troubleshoot,
-        disablePadding: false,
-        label: 'Thời gian tạo',
-    },
-    {
-        id: 'button',
-        numeric: false,
-        disablePadding: false,
-        label: 'Thao tác',
-    },
+
 ];
 
 function EnhancedTableHead(props) {
@@ -196,7 +185,7 @@ function EnhancedTableToolbar(props) {
                 id="tableTitle"
                 component="div"
             >
-                Quản lý sản phẩm
+                Danh sách sản phẩm
             </Typography>
 
         </Toolbar>
@@ -207,7 +196,7 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
 
-export default function ProductsTable() {
+export default function ProductsTableView() {
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('calories');
     const [selected, setSelected] = useState([]);
@@ -679,22 +668,6 @@ export default function ProductsTable() {
                                         <TableCell align="right">{item.discountedPrice}$</TableCell>
                                         <TableCell align="right">{item.discountPresent}%</TableCell>
                                         <TableCell align="right">{item.quantity}</TableCell>
-                                        <TableCell align="right">{item.createdAt}</TableCell>
-                                        <TableCell align="left">
-                                            <div className='inline-block'>
-                                                <Tooltip title="Chỉnh sửa">
-                                                    <IconButton color="warning" onClick={() => handleOpenEdit(item.id)} >
-                                                        <EditNoteSharpIcon />
-                                                    </IconButton>
-                                                </Tooltip>
-                                                <Tooltip title="Xóa">
-                                                    <IconButton color="error" onClick={() => handleOpenDelete(item.id)} >
-                                                        <DeleteOutlineSharpIcon />
-                                                    </IconButton>
-                                                </Tooltip>
-                                            </div>
-
-                                        </TableCell>
                                     </TableRow>
                                 );
                             })}
@@ -720,10 +693,13 @@ export default function ProductsTable() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-            <FormControlLabel
+            <div className='px-2'>
+                <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
                 label="Dense padding"
             />
+            </div>
+            
         </Box>
     );
 }

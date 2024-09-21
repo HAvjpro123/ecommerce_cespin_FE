@@ -189,14 +189,6 @@ function Admin(props) {
                 </>
 
                 <List>
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <AccountCircleIcon />
-                            </ListItemIcon>
-                            <ListItemText>Tài khoản</ListItemText>
-                        </ListItemButton>
-                    </ListItem>
                     <ListItem disablePadding onClick={() => navigate("/")}>
                         <ListItemButton>
                             <ListItemIcon>

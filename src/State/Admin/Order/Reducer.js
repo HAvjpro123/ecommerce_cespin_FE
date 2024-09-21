@@ -82,7 +82,7 @@ const adminOrderReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 loading: false,
-                orders: state.orders.filter((orders) => orders.id !== action.payload)
+                deletedOrder:action.payload
             }
         case DELETE_ORDER_FAILURE:
             return {
